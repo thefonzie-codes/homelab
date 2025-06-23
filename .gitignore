@@ -1,0 +1,137 @@
+# Homelab .gitignore
+
+# Docker and Docker Compose
+docker-compose/data/
+docker-compose/config/local.ini
+*.env
+.env.local
+.env.production
+.env.staging
+
+# Kubernetes
+kubernetes/secrets/
+kubernetes/configmaps/
+*.kubeconfig
+kubeconfig
+
+# Monitoring and Logs
+monitoring/data/
+monitoring/logs/
+*.log
+logs/
+prometheus/data/
+grafana/data/
+alertmanager/data/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+*.couch
+
+# Configuration files with sensitive data
+config/secrets/
+config/credentials/
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.atom/
+.brackets.json
+
+# Node.js (if any)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (if any)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Archive files
+*.tar.gz
+*.zip
+*.rar
+*.7z
+
+# Network and SSL certificates
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+
+# Scripts with sensitive data
+scripts/secrets/
+scripts/credentials/
+
+# Documentation build artifacts
+docs/_build/
+docs/.doctrees/
+
+# Terraform (if used)
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Ansible (if used)
+*.retry
+ansible.cfg
+
+# Helm (if used)
+charts/*/charts/
+charts/*/requirements.lock
+
+# Local development
+.local/
+local/ 
