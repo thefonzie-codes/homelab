@@ -1,18 +1,14 @@
-version: '3.8'
-
 services:
   couchdb:
     image: couchdb:3.3
     container_name: obsidian-couchdb
     restart: unless-stopped
-    ports:
-      - "5984:5984"
     environment:
       COUCHDB_USER: admin
       COUCHDB_PASSWORD: obsidian_admin_password_change_me
     volumes:
       - ./data/couchdb:/opt/couchdb/data
-      - ./config/local.ini:/opt/couchdb/etc/local.d/local.ini
+      - ./config/local.ini:/opt/couchdb/etc/local.d/local.ini:ro
     networks:
       - obsidian-network
 
@@ -21,8 +17,8 @@ services:
     container_name: obsidian-caddy
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
+      - "8080:80"
+      - "8443:443"
     volumes:
       - ./config/Caddyfile:/etc/caddy/Caddyfile
       - ./data/caddy:/data
