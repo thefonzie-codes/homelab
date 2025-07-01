@@ -1,3 +1,18 @@
 obsidian.{$TAILSCALE_DOMAIN} {
     reverse_proxy couchdb:5984
+    tls {
+        on_demand
+    }
+    
+    # Add security headersc
+    header {
+        # Enable HSTS
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        # Prevent clickjacking
+        X-Frame-Options "DENY"
+        # Prevent MIME type sniffing
+        X-Content-Type-Options "nosniff"
+        # XSS protection
+        X-XSS-Protection "1; mode=block"
+    }
 }

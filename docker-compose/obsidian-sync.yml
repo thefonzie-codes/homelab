@@ -16,6 +16,23 @@ services:
     networks:
       - obsidian-network
 
+  caddy:
+    image: caddy:2-alpine
+    container_name: obsidian-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./config/Caddyfile:/etc/caddy/Caddyfile
+      - ./data/caddy:/data
+      - ./data/caddy/config:/config
+    environment:
+      - TAILSCALE_DOMAIN=${TAILSCALE_DOMAIN:-your-domain.com}
+    networks:
+      - obsidian-network
+    depends_on:
+      - couchdb
 
 networks:
   obsidian-network:
