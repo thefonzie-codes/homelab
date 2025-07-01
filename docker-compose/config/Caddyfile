@@ -1,13 +1,10 @@
+# Domain-based HTTPS (for Tailscale access with self-signed cert)
 obsidian.{$TAILSCALE_DOMAIN} {
     reverse_proxy couchdb:5984
-    tls {
-        on_demand
-    }
+    tls internal
     
-    # Add security headersc
+    # Add security headers
     header {
-        # Enable HSTS
-        Strict-Transport-Security "max-age=31536000; includeSubDomains"
         # Prevent clickjacking
         X-Frame-Options "DENY"
         # Prevent MIME type sniffing
@@ -16,3 +13,19 @@ obsidian.{$TAILSCALE_DOMAIN} {
         X-XSS-Protection "1; mode=block"
     }
 }
+
+# Local IP access (HTTP only for Tailscale)
+:80 {
+    reverse_proxy couchdb:5984
+    
+    # Add security headers
+    header {
+        # Prevent clickjacking
+        X-Frame-Options "DENY"
+        # Prevent MIME type sniffing
+        X-Content-Type-Options "nosniff"
+        # XSS protection
+        X-XSS-Protection "1; mode=block"
+    }
+}
+
