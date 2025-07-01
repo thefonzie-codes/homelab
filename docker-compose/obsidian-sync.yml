@@ -8,7 +8,7 @@ services:
       COUCHDB_PASSWORD: obsidian_admin_password_change_me
     volumes:
       - ./data/couchdb:/opt/couchdb/data
-      - ./config/local.ini:/opt/couchdb/etc/local.d/local.ini:ro
+      - ./config/local.ini:/opt/couchdb/etc/local.ini:ro
     networks:
       - obsidian-network
 
