@@ -1,31 +1,23 @@
-# Domain-based HTTPS (for Tailscale access with self-signed cert)
-obsidian.{$TAILSCALE_DOMAIN} {
+# HTTPS access via Tailscale
+https://kagenou-server.tail2bbd46.ts.net {
     reverse_proxy couchdb:5984
     tls internal
     
     # Add security headers
     header {
-        # Prevent clickjacking
         X-Frame-Options "DENY"
-        # Prevent MIME type sniffing
         X-Content-Type-Options "nosniff"
-        # XSS protection
         X-XSS-Protection "1; mode=block"
     }
 }
 
-# Local IP access (HTTP only for Tailscale)
+# HTTP fallback on port 80
 :80 {
     reverse_proxy couchdb:5984
     
-    # Add security headers
     header {
-        # Prevent clickjacking
         X-Frame-Options "DENY"
-        # Prevent MIME type sniffing
         X-Content-Type-Options "nosniff"
-        # XSS protection
         X-XSS-Protection "1; mode=block"
     }
 }
-
